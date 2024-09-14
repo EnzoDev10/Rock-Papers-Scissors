@@ -7,7 +7,7 @@
 		<title>Rock Paper Scissors</title>
 	</head>
 	<body
-		class="w-screen h-screen flex flex-col items-center justify-evenly sm:flex-row font-semibold bg-gradient-to-b from-rose-300 to-orange-300"
+		class="w-screen h-screen flex flex-col items-center justify-center gap-10 sm:flex-row font-semibold bg-gradient-to-b from-rose-300 to-orange-300"
 	>
 		<button
 			class="bg-slate-600 text-white py-4 px-8 rounded-lg transition-all focus-visible:ring-8 focus-visible:ring-orange-700 hover:-translate-y-1 active:translate-y-0"
@@ -24,18 +24,15 @@
 			>
 				<h1 class="mb-5 text-2xl font-bold">Rock Paper Scissors</h1>
 				<div class="w-full flex justify-between">
-					<p>Player:</p>
-					<p>Rival:</p>
+					<p>Player: <span id="human-score"></span></p>
+					<p>computer: <span id="computer-score"></span></p>
 				</div>
 			</section>
 			<section
 				id="result"
 				class="bg-white rounded-md flex items-center justify-center flex-col"
 			>
-				<p id="game-result">
-					✂️ <span class="font-bold">VS</span> 📰
-					<span id="winner" class="font-bold"></span>
-				</p>
+				<span id="game-result" class="font-bold">VS</span>
 			</section>
 			<section
 				class="bg-white rounded-md py-5 px-6 flex items-center justify-center flex-col"
