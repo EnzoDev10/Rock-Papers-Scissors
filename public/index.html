@@ -3,11 +3,57 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="styles.css" />
 		<title>Rock Paper Scissors</title>
 	</head>
-	<body>
-		<h1>Enjoy the game!!</h1>
+	<body
+		class="w-screen h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-blue-200"
+	>
+		<main
+			id="game-container"
+			class="min-w-52 max-w-96 grid gap-y-5 grid-rows-2"
+		>
+			<section
+				class="bg-white rounded-md py-5 px-6 flex items-center justify-center flex-col"
+			>
+				<h1 class="mb-5 text-2xl font-bold">Rock Paper Scissors</h1>
+				<div class="w-full flex justify-between">
+					<p class="font-semibold">Player:</p>
+					<p class="font-semibold">Rival:</p>
+				</div>
+			</section>
+			<section
+				id="result"
+				class="bg-white rounded-md flex items-center justify-center flex-col"
+			>
+				<p id="game-result">
+					✂️ <span class="font-bold">VS</span> 📰
+					<span id="winner" class="font-bold"></span>
+				</p>
+			</section>
+			<section
+				class="bg-white rounded-md py-5 px-6 flex items-center justify-center flex-col"
+			>
+				<h2 class="font-semibold text-lg">Choose your move:</h2>
+				<div id="option-container" class="flex gap-4 mt-4">
+					<button
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+					>
+						🪨
+					</button>
+					<button
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+					>
+						📰
+					</button>
+					<button
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+					>
+						✂️
+					</button>
+				</div>
+			</section>
+		</main>
 		<script src="script.js"></script>
 	</body>
 </html>
