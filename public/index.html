@@ -7,8 +7,14 @@
 		<title>Rock Paper Scissors</title>
 	</head>
 	<body
-		class="w-screen h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-blue-200"
+		class="w-screen h-screen flex flex-col items-center justify-evenly sm:flex-row font-semibold bg-gradient-to-b from-rose-300 to-orange-300"
 	>
+		<button
+			class="bg-slate-600 text-white py-4 px-8 rounded-lg transition-all focus-visible:ring-8 focus-visible:ring-orange-700 hover:-translate-y-1 active:translate-y-0"
+		>
+			Start Round
+		</button>
+
 		<main
 			id="game-container"
 			class="min-w-52 max-w-96 grid gap-y-5 grid-rows-2"
@@ -18,8 +24,8 @@
 			>
 				<h1 class="mb-5 text-2xl font-bold">Rock Paper Scissors</h1>
 				<div class="w-full flex justify-between">
-					<p class="font-semibold">Player:</p>
-					<p class="font-semibold">Rival:</p>
+					<p>Player:</p>
+					<p>Rival:</p>
 				</div>
 			</section>
 			<section
@@ -34,20 +40,20 @@
 			<section
 				class="bg-white rounded-md py-5 px-6 flex items-center justify-center flex-col"
 			>
-				<h2 class="font-semibold text-lg">Choose your move:</h2>
+				<h2 class="text-lg">Choose your move:</h2>
 				<div id="option-container" class="flex gap-4 mt-4">
 					<button
-						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 focus-visible:ring-8 focus-visible:ring-orange-700 active:ring-8 ring-blue-300 active:translate-y-0"
 					>
 						🪨
 					</button>
 					<button
-						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 focus-visible:ring-8 focus-visible:ring-orange-700 active:ring-8 ring-orange-300 active:translate-y-0"
 					>
 						📰
 					</button>
 					<button
-						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 active:bg-blue-500"
+						class="option bg-slate-900 p-4 rounded-lg text-2xl hover:bg-black transition-all hover:-translate-y-1 focus-visible:ring-8 focus-visible:ring-orange-700 active:ring-8 ring-orange-300 active:translate-y-0"
 					>
 						✂️
 					</button>
