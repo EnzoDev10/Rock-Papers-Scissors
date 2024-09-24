@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* When the buttons are disabled changes the styles  */
+.label-choice:has(input:disabled) {
+	@apply bg-slate-500;
+	@apply translate-y-0;
+	@apply focus-visible:ring-0;
+	@apply active:ring-0;
+} 
