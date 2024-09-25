@@ -1,3 +1,10 @@
+// TODO
+/* 
+- After a game has ended let the user know if they won or lose
+- Make the background color change, on each game or after a certain time(optional) 
+- Polish the overall code as it's kind of messy and repeats often
+*/
+
 let playerScore = 0;
 let computerScore = 0;
 const options = ['ROCK', 'PAPER', 'SCISSORS'];
@@ -35,9 +42,7 @@ function getComputerChoice() {
 }
 
 function playRound() {
-	playerScoreDisplay.textContent = playerScore;
-	computerScoreDisplay.textContent = computerScore;
-
+	resetElements();
 	choiceBtns.forEach((btn) => {
 		btn.addEventListener('click', (e) => {
 			if (playerScore < 5 && computerScore < 5) {
@@ -49,13 +54,11 @@ function playRound() {
 				switch (result) {
 					case 'Win':
 						resultDisplay.textContent = 'You win!';
-						++playerScore;
 						playerScoreDisplay.textContent = playerScore;
 
 						break;
 					case 'Lose':
 						resultDisplay.textContent = 'You Lose!';
-						computerScore++;
 						computerScoreDisplay.textContent = computerScore;
 
 						break;
@@ -64,7 +67,6 @@ function playRound() {
 					default:
 						break;
 				}
-				playerScoreDisplay.textContent = playerScore;
 			} else {
 				choiceBtns.forEach((btn) => {
 					btn.disabled = true;
@@ -76,32 +78,37 @@ function playRound() {
 	});
 }
 
-function showResult(playerChoice, computerChoice) {
+function resetElements() {
+	playerScore = 0;
+	computerScore = 0;
+	playerScoreDisplay.textContent = playerScore;
+	computerScoreDisplay.textContent = computerScore;
+	playerChoiceDisplay.textContent = 'Player';
+	computerChoiceDisplay.textContent = 'computer';
 
-	switch (playerChoice) {
-		case 'ROCK':
-			playerChoiceDisplay.textContent = '🪨';
-			break;
-		case 'PAPER':
-			playerChoiceDisplay.textContent = '📰';
-			break;
-		case 'SCISSORS':
-			playerChoiceDisplay.textContent = '✂️';
-			break;
+	resultDisplay.textContent = '';
+}
+
+function showResult(playerChoice, computerChoice) {
+	for (let i = 0; i < arguments.length; i++) {
+		let display;
+		if (i === 0) {
+			display = playerChoiceDisplay;
+		} else {
+			display = computerChoiceDisplay;
+		}
+		switch (arguments[i]) {
+			case 'ROCK':
+				display.textContent = '🪨';
+				break;
+			case 'PAPER':
+				display.textContent = '📰';
+				break;
+			case 'SCISSORS':
+				display.textContent = '✂️';
+				break;
+		}
 	}
-	switch (computerChoice) {
-		case 'ROCK':
-			computerChoiceDisplay.textContent = '🪨';
-			break;
-		case 'PAPER':
-			computerChoiceDisplay.textContent = '📰';
-			break;
-		case 'SCISSORS':
-			computerChoiceDisplay.textContent = '✂️';
-			break;
-	}
-	console.log(playerChoiceDisplay)
-	console.log(computerChoiceDisplay)
 }
 
 function compareChoices(playerChoice, computerChoice) {
@@ -150,11 +157,3 @@ function compareScores() {
 			break;
 	}
 }
-
-function playGame() {
-	// Calls the function an amount equal to length
-	Array.from({ length: 5 }, () => playRound());
-	compareScores();
-}
-
-/* playGame(); */
