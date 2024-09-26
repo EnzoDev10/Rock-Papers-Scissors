@@ -66,7 +66,7 @@ function resetElements() {
 	computerScoreDisplay.textContent = computerScore;
 
 	playerChoiceDisplay.textContent = 'Player';
-	computerChoiceDisplay.textContent = 'VS computer';
+	computerChoiceDisplay.textContent = 'Computer';
 
 	resultDisplay.textContent = '';
 	resultSection.style.border = 'none';
@@ -113,7 +113,7 @@ function showResult(playerChoice, computerChoice, result) {
 		}
 		switch (arguments[i]) {
 			case 'ROCK':
-				display.textContent = '🪨';
+				display.textContent = '🗿';
 				break;
 			case 'PAPER':
 				display.textContent = '📰';
