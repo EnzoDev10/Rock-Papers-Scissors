@@ -1,8 +1,7 @@
 // TODO
 /* 
-- After a game has ended let the user know if they won or lose
 - Make the background color change, on each game or after a certain time(optional) 
-- Polish the overall code as it's kind of messy and repeats often
+
 */
 
 let playerScore = 0;
@@ -14,8 +13,8 @@ const choiceBtns = document.querySelectorAll('input');
 const playerScoreDisplay = document.querySelector('#player-score');
 const computerScoreDisplay = document.querySelector('#computer-score');
 
-const resultSection = document.querySelector('#result-section');
 const resultDisplay = document.querySelector('#result');
+const resultSection = document.querySelector('#result-section');
 
 let playerChoiceDisplay = document.querySelector('#player-choice');
 let computerChoiceDisplay = document.querySelector('#computer-choice');
@@ -31,23 +30,22 @@ function getComputerChoice() {
 	// Picks one option randomly.
 	// "| 0" rounds the result to an integer.
 	//  (^it's faster than math.floor)
-	let computerChoice = options[(Math.random() * options.length) | 0];
-	return computerChoice;
+	return options[(Math.random() * options.length) | 0];
 }
 
 function playGame() {
 	resetElements();
 	choiceBtns.forEach((btn) => {
-		btn.addEventListener('click', (e) => {
+		btn.addEventListener('click', (choice) => {
 			if (playerScore < 5 && computerScore < 5) {
-				let playerChoice = e.target.id.toUpperCase();
+				let playerChoice = choice.target.id;
 				let computerChoice = getComputerChoice();
 				let result = roundResult(playerChoice, computerChoice);
 				showResult(playerChoice, computerChoice, result);
 				return;
 			} else {
+				declareWinner(playerScore, computerScore);
 				toggleBtns(true, false);
-				// * add function that shows the player the game result
 				return;
 			}
 		});
@@ -68,9 +66,10 @@ function resetElements() {
 	computerScoreDisplay.textContent = computerScore;
 
 	playerChoiceDisplay.textContent = 'Player';
-	computerChoiceDisplay.textContent = 'computer';
+	computerChoiceDisplay.textContent = 'VS computer';
 
 	resultDisplay.textContent = '';
+	resultSection.style.border = 'none';
 }
 
 function roundResult(playerChoice, computerChoice) {
@@ -137,5 +136,18 @@ function showResult(playerChoice, computerChoice, result) {
 		default:
 			resultDisplay.textContent = "It's a Tie!";
 			break;
+	}
+}
+
+function declareWinner(playerScore, computerScore) {
+	playerChoiceDisplay.textContent = '';
+	computerChoiceDisplay.textContent = '';
+
+	if (playerScore > computerScore) {
+		resultSection.style.border = '5px solid green';
+		resultDisplay.textContent = 'Player Won!';
+	} else {
+		resultSection.style.border = '5px solid red';
+		resultDisplay.textContent = 'Player Lose!';
 	}
 }
