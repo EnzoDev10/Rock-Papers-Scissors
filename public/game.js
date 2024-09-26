@@ -144,10 +144,10 @@ function declareWinner(playerScore, computerScore) {
 	computerChoiceDisplay.textContent = '';
 
 	if (playerScore > computerScore) {
-		resultSection.style.border = '5px solid green';
+		resultSection.style.border = '5px solid #2b9348';
 		resultDisplay.textContent = 'Player Won!';
 	} else {
-		resultSection.style.border = '5px solid red';
+		resultSection.style.border = '5px solid #ef233c';
 		resultDisplay.textContent = 'Player Lose!';
 	}
 }

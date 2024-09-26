@@ -8,4 +8,47 @@
 	@apply translate-y-0;
 	@apply focus-visible:ring-0;
 	@apply active:ring-0;
-} 
+}
+
+body {
+	background: linear-gradient(360deg, #092684, #456fe8, #094ebe);
+	background-size: 600% 600%;
+
+	-webkit-animation: AnimationName 15s ease infinite;
+	-moz-animation: AnimationName 15s ease infinite;
+	animation: AnimationName 15s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+	0% {
+		background-position: 52% 0%;
+	}
+	50% {
+		background-position: 49% 100%;
+	}
+	100% {
+		background-position: 52% 0%;
+	}
+}
+@-moz-keyframes AnimationName {
+	0% {
+		background-position: 52% 0%;
+	}
+	50% {
+		background-position: 49% 100%;
+	}
+	100% {
+		background-position: 52% 0%;
+	}
+}
+@keyframes AnimationName {
+	0% {
+		background-position: 52% 0%;
+	}
+	50% {
+		background-position: 49% 100%;
+	}
+	100% {
+		background-position: 52% 0%;
+	}
+}
