@@ -18,6 +18,7 @@ const resultSection = document.querySelector('#result-section');
 
 let playerChoiceDisplay = document.querySelector('#player-choice');
 let computerChoiceDisplay = document.querySelector('#computer-choice');
+let versus = document.querySelector('.vs');
 
 startGameBtn.addEventListener('click', () => {
 	toggleBtns(false, true);
@@ -67,6 +68,8 @@ function resetElements() {
 
 	playerChoiceDisplay.textContent = 'Player';
 	computerChoiceDisplay.textContent = 'Computer';
+	versus.textContent = 'VS';
+
 
 	resultDisplay.textContent = '';
 	resultSection.style.border = 'none';
@@ -142,6 +145,7 @@ function showResult(playerChoice, computerChoice, result) {
 function declareWinner(playerScore, computerScore) {
 	playerChoiceDisplay.textContent = '';
 	computerChoiceDisplay.textContent = '';
+	versus.textContent = '';
 
 	if (playerScore > computerScore) {
 		resultSection.style.border = '5px solid #2b9348';
