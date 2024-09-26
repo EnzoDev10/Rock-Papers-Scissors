@@ -7,7 +7,6 @@
 
 let playerScore = 0;
 let computerScore = 0;
-const options = ['ROCK', 'PAPER', 'SCISSORS'];
 
 const startGameBtn = document.querySelector('button');
 const choiceBtns = document.querySelectorAll('input');
@@ -15,67 +14,51 @@ const choiceBtns = document.querySelectorAll('input');
 const playerScoreDisplay = document.querySelector('#player-score');
 const computerScoreDisplay = document.querySelector('#computer-score');
 
+const resultSection = document.querySelector('#result-section');
 const resultDisplay = document.querySelector('#result');
 
 let playerChoiceDisplay = document.querySelector('#player-choice');
 let computerChoiceDisplay = document.querySelector('#computer-choice');
 
 startGameBtn.addEventListener('click', () => {
-	toggleBtns();
-	playRound();
+	toggleBtns(false, true);
+	playGame();
 });
 
-function toggleBtns() {
-	choiceBtns.forEach((btn) => {
-		btn.disabled = false;
-	});
-	startGameBtn.disabled = true;
-}
-
 function getComputerChoice() {
-	// Chooses an option through an index that is generated randomly
-	// with math.random multiplied by the total amount of options
-	// "| 0" is used to round the result to an integer
-	// it´s faster than math.floor
+	const options = ['ROCK', 'PAPER', 'SCISSORS'];
+
+	// Picks one option randomly.
+	// "| 0" rounds the result to an integer.
+	//  (^it's faster than math.floor)
 	let computerChoice = options[(Math.random() * options.length) | 0];
 	return computerChoice;
 }
 
-function playRound() {
+function playGame() {
 	resetElements();
 	choiceBtns.forEach((btn) => {
 		btn.addEventListener('click', (e) => {
 			if (playerScore < 5 && computerScore < 5) {
 				let playerChoice = e.target.id.toUpperCase();
 				let computerChoice = getComputerChoice();
-				let result = compareChoices(playerChoice, computerChoice);
-				showResult(playerChoice, computerChoice);
-
-				switch (result) {
-					case 'Win':
-						resultDisplay.textContent = 'You win!';
-						playerScoreDisplay.textContent = playerScore;
-
-						break;
-					case 'Lose':
-						resultDisplay.textContent = 'You Lose!';
-						computerScoreDisplay.textContent = computerScore;
-
-						break;
-					case 'Tie':
-						resultDisplay.textContent = "It's a Tie!";
-					default:
-						break;
-				}
+				let result = roundResult(playerChoice, computerChoice);
+				showResult(playerChoice, computerChoice, result);
+				return;
 			} else {
-				choiceBtns.forEach((btn) => {
-					btn.disabled = true;
-				});
-				startGameBtn.disabled = false;
+				toggleBtns(true, false);
+				// * add function that shows the player the game result
 				return;
 			}
 		});
 	});
+}
+
+function toggleBtns(choicebtnsBolean, StartGameBtnBolean) {
+	choiceBtns.forEach((btn) => {
+		btn.disabled = choicebtnsBolean;
+	});
+	startGameBtn.disabled = StartGameBtnBolean;
 }
 
 function resetElements() {
@@ -83,35 +66,14 @@ function resetElements() {
 	computerScore = 0;
 	playerScoreDisplay.textContent = playerScore;
 	computerScoreDisplay.textContent = computerScore;
+
 	playerChoiceDisplay.textContent = 'Player';
 	computerChoiceDisplay.textContent = 'computer';
 
 	resultDisplay.textContent = '';
 }
 
-function showResult(playerChoice, computerChoice) {
-	for (let i = 0; i < arguments.length; i++) {
-		let display;
-		if (i === 0) {
-			display = playerChoiceDisplay;
-		} else {
-			display = computerChoiceDisplay;
-		}
-		switch (arguments[i]) {
-			case 'ROCK':
-				display.textContent = '🪨';
-				break;
-			case 'PAPER':
-				display.textContent = '📰';
-				break;
-			case 'SCISSORS':
-				display.textContent = '✂️';
-				break;
-		}
-	}
-}
-
-function compareChoices(playerChoice, computerChoice) {
+function roundResult(playerChoice, computerChoice) {
 	switch (true) {
 		case playerChoice == computerChoice:
 			return 'Tie';
@@ -137,23 +99,43 @@ function compareChoices(playerChoice, computerChoice) {
 			return 'Win';
 
 		default:
-			console.log('Use one of the options please');
+			console.log('Something went wrong!');
 			break;
 	}
 }
 
-function compareScores() {
-	console.log('\nFinal Result:');
-	switch (true) {
-		case playerScore === computerScore:
-			console.log("It's a tie!");
+function showResult(playerChoice, computerChoice, result) {
+	for (let i = 0; i < arguments.length; i++) {
+		let display;
+		if (i === 0) {
+			display = playerChoiceDisplay;
+		} else {
+			display = computerChoiceDisplay;
+		}
+		switch (arguments[i]) {
+			case 'ROCK':
+				display.textContent = '🪨';
+				break;
+			case 'PAPER':
+				display.textContent = '📰';
+				break;
+			case 'SCISSORS':
+				display.textContent = '✂️';
+				break;
+		}
+	}
+
+	switch (result) {
+		case 'Win':
+			resultDisplay.textContent = 'You win!';
+			playerScoreDisplay.textContent = playerScore;
 			break;
-		case playerScore > computerScore:
-			console.log('Human wins!');
+		case 'Lose':
+			resultDisplay.textContent = 'You Lose!';
+			computerScoreDisplay.textContent = computerScore;
 			break;
-		case playerScore < computerScore:
-			console.log('computer wins!');
 		default:
+			resultDisplay.textContent = "It's a Tie!";
 			break;
 	}
 }
