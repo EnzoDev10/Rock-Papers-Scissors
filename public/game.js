@@ -1,9 +1,3 @@
-// TODO
-/* 
-- Make the background color change, on each game or after a certain time(optional) 
-
-*/
-
 let playerScore = 0;
 let computerScore = 0;
 
@@ -33,24 +27,29 @@ function getComputerChoice() {
 	//  (^it's faster than math.floor)
 	return options[(Math.random() * options.length) | 0];
 }
-
 function playGame() {
 	resetElements();
 	choiceBtns.forEach((btn) => {
-		btn.addEventListener('click', (choice) => {
-			if (playerScore < 5 && computerScore < 5) {
-				let playerChoice = choice.target.id;
-				let computerChoice = getComputerChoice();
-				let result = roundResult(playerChoice, computerChoice);
-				showResult(playerChoice, computerChoice, result);
-				return;
-			} else {
-				declareWinner(playerScore, computerScore);
-				toggleBtns(true, false);
-				return;
-			}
-		});
+		btn.addEventListener('click', round);
 	});
+}
+
+function round(evt) {
+	if (playerScore < 5 && computerScore < 5) {
+		let playerChoice = evt.target.id;
+		let computerChoice = getComputerChoice();
+
+		let result = roundResult(playerChoice, computerChoice);
+		console.log(playerChoice);
+		console.log(computerChoice);
+		console.log(result);
+		showResult(playerChoice, computerChoice, result);
+		return;
+	} else {
+		declareWinner(playerScore, computerScore);
+		toggleBtns(true, false);
+		return;
+	}
 }
 
 function toggleBtns(choicebtnsBolean, StartGameBtnBolean) {
@@ -69,7 +68,6 @@ function resetElements() {
 	playerChoiceDisplay.textContent = 'Player';
 	computerChoiceDisplay.textContent = 'Computer';
 	versus.textContent = 'VS';
-
 
 	resultDisplay.textContent = '';
 	resultSection.style.border = 'none';
