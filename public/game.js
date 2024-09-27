@@ -40,9 +40,7 @@ function round(evt) {
 		let computerChoice = getComputerChoice();
 
 		let result = roundResult(playerChoice, computerChoice);
-		console.log(playerChoice);
-		console.log(computerChoice);
-		console.log(result);
+
 		showResult(playerChoice, computerChoice, result);
 		return;
 	} else {
